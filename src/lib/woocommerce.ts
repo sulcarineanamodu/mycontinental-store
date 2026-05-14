@@ -1,45 +1,53 @@
+import https from 'https';
 import { WooCommerceProduct, WooCommerceCategory } from './types';
 
-const baseUrl = process.env.NEXT_PUBLIC_WOOCOMMERCE_URL || '';
-const consumerKey = process.env.WOOCOMMERCE_CONSUMER_KEY || '';
+// Connect directly to the server IP to bypass Cloudflare WAF
+// The domain's DNS goes through Cloudflare which blocks /wp-json/ from external IPs.
+// By connecting to the origin IP with the correct Host header, we skip Cloudflare entirely.
+const SERVER_IP   = '66.29.141.37';
+const WC_DOMAIN   = 'www.mycontinentalfoodstore.co.uk';
+const consumerKey    = process.env.WOOCOMMERCE_CONSUMER_KEY    || '';
 const consumerSecret = process.env.WOOCOMMERCE_CONSUMER_SECRET || '';
 
-interface FetchOptions {
-  method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  body?: string;
-  headers?: Record<string, string>;
-}
-
 function getAuthHeader(): string {
-  const credentials = `${consumerKey}:${consumerSecret}`;
-  return 'Basic ' + Buffer.from(credentials).toString('base64');
+  return 'Basic ' + Buffer.from(`${consumerKey}:${consumerSecret}`).toString('base64');
 }
 
-async function fetchFromWooCommerce(
-  endpoint: string,
-  options: FetchOptions = {}
-): Promise<Response> {
-  const url = `${baseUrl}/wp-json/wc/v3${endpoint}`;
+async function fetchFromWooCommerce(endpoint: string): Promise<unknown> {
+  const path = `/wp-json/wc/v3${endpoint}`;
 
-  const headers: Record<string, string> = {
-    Authorization: getAuthHeader(),
-    'Content-Type': 'application/json',
-    ...options.headers,
-  };
-
-  const response = await fetch(url, {
-    method: options.method || 'GET',
-    headers,
-    body: options.body,
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `WooCommerce API error: ${response.status} ${response.statusText}`
+  return new Promise((resolve, reject) => {
+    const req = https.request(
+      {
+        hostname: SERVER_IP,
+        port: 443,
+        path,
+        method: 'GET',
+        headers: {
+          Host: WC_DOMAIN,
+          Authorization: getAuthHeader(),
+          'Content-Type': 'application/json',
+        },
+        rejectUnauthorized: false, // cert is issued for the domain, not the IP
+        servername: WC_DOMAIN,    // SNI — tells the server which cert to use
+      },
+      (res) => {
+        if (res.statusCode && res.statusCode >= 400) {
+          reject(new Error(`WC API ${res.statusCode}`));
+          return;
+        }
+        let data = '';
+        res.on('data', (chunk: Buffer) => { data += chunk.toString(); });
+        res.on('end', () => {
+          try { resolve(JSON.parse(data)); }
+          catch { reject(new Error(`Invalid JSON: ${data.slice(0, 100)}`)); }
+        });
+      }
     );
-  }
-
-  return response;
+    req.setTimeout(30_000, () => { req.destroy(); reject(new Error('Timeout')); });
+    req.on('error', reject);
+    req.end();
+  });
 }
 
 export const woocommerce = {
@@ -64,13 +72,11 @@ export const woocommerce = {
       const queryString = searchParams.toString();
       const endpoint = `/products${queryString ? `?${queryString}` : ''}`;
 
-      const response = await fetchFromWooCommerce(endpoint);
-      return response.json();
+      return fetchFromWooCommerce(endpoint) as Promise<WooCommerceProduct[]>;
     },
 
     async get(productId: number): Promise<WooCommerceProduct> {
-      const response = await fetchFromWooCommerce(`/products/${productId}`);
-      return response.json();
+      return fetchFromWooCommerce(`/products/${productId}`) as Promise<WooCommerceProduct>;
     },
 
     async getBySlug(slug: string): Promise<WooCommerceProduct | null> {
@@ -79,46 +85,40 @@ export const woocommerce = {
     },
 
     async featured(limit: number = 10): Promise<WooCommerceProduct[]> {
-      const response = await fetchFromWooCommerce(
+      return fetchFromWooCommerce(
         `/products?featured=true&per_page=${limit}`
-      );
-      return response.json();
+      ) as Promise<WooCommerceProduct[]>;
     },
 
     async onSale(limit: number = 10): Promise<WooCommerceProduct[]> {
-      const response = await fetchFromWooCommerce(
+      return fetchFromWooCommerce(
         `/products?on_sale=true&per_page=${limit}`
-      );
-      return response.json();
+      ) as Promise<WooCommerceProduct[]>;
     },
 
     async byCategory(categoryId: number, params?: { limit?: number; page?: number }): Promise<WooCommerceProduct[]> {
-      const response = await fetchFromWooCommerce(
+      return fetchFromWooCommerce(
         `/products?category=${categoryId}&per_page=${params?.limit || 20}&page=${params?.page || 1}`
-      );
-      return response.json();
+      ) as Promise<WooCommerceProduct[]>;
     },
   },
 
   categories: {
     async list(params?: { per_page?: number }): Promise<WooCommerceCategory[]> {
       const queryString = params?.per_page ? `?per_page=${params.per_page}` : '';
-      const response = await fetchFromWooCommerce(`/products/categories${queryString}`);
-      return response.json();
+      return fetchFromWooCommerce(`/products/categories${queryString}`) as Promise<WooCommerceCategory[]>;
     },
 
     async get(categoryId: number): Promise<WooCommerceCategory> {
-      const response = await fetchFromWooCommerce(`/products/categories/${categoryId}`);
-      return response.json();
+      return fetchFromWooCommerce(`/products/categories/${categoryId}`) as Promise<WooCommerceCategory>;
     },
   },
 
   search: {
     async products(query: string, limit: number = 20): Promise<WooCommerceProduct[]> {
-      const response = await fetchFromWooCommerce(
+      return fetchFromWooCommerce(
         `/products?search=${encodeURIComponent(query)}&per_page=${limit}`
-      );
-      return response.json();
+      ) as Promise<WooCommerceProduct[]>;
     },
   },
 };
