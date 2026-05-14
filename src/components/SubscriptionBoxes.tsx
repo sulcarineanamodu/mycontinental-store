@@ -92,7 +92,7 @@ export default function SubscriptionBoxes() {
 
   return (
     <section className="py-16 md:py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-safe-left pr-safe-right">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-4">
             Your Monthly Taste of Home

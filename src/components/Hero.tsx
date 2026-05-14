@@ -83,7 +83,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full min-h-[600px] md:min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative w-full min-h-[500px] md:min-h-screen flex items-center justify-center overflow-hidden"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -106,7 +106,7 @@ export default function Hero() {
 
           {/* Content */}
           <motion.div
-            className="relative z-10 h-full flex items-center justify-center max-w-4xl mx-auto px-safe-left pr-safe-right text-center"
+            className="relative z-10 h-full flex items-center justify-center max-w-4xl mx-auto px-6 md:px-8 text-center"
             variants={{
               hidden: { opacity: 0 },
               visible: {
@@ -123,14 +123,14 @@ export default function Hero() {
             <div className="w-full">
               <motion.h1
                 variants={contentVariants}
-                className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight drop-shadow-lg"
+                className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-3 md:mb-6 leading-tight drop-shadow-lg"
               >
                 {slide.headline}
               </motion.h1>
 
               <motion.p
                 variants={contentVariants}
-                className="text-lg md:text-xl text-white/90 mb-8 md:mb-12 max-w-2xl mx-auto drop-shadow-md"
+                className="text-base md:text-xl text-white/90 mb-6 md:mb-12 max-w-2xl mx-auto drop-shadow-md"
               >
                 {slide.subtext}
               </motion.p>

@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <footer className="bg-text-primary text-white">
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-safe-left pr-safe-right py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand Section */}
           <div className="col-span-1">
