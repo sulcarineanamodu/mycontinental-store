@@ -7,7 +7,7 @@ interface Slide {
   id: number;
   headline: string;
   subtext: string;
-  bgGradient: string;
+  image: string;
   overlayColor: string;
 }
 
@@ -16,22 +16,22 @@ const slides: Slide[] = [
     id: 1,
     headline: 'Your Taste of Home, Delivered',
     subtext: "The UK's largest African & Caribbean grocery store",
-    bgGradient: 'from-background via-background to-primary/20',
-    overlayColor: 'bg-black/30',
+    image: '/hero-1.jpg',
+    overlayColor: 'bg-black/50',
   },
   {
     id: 2,
     headline: '2,700+ Authentic Products',
     subtext: 'From fresh produce to hair care — everything you need in one place',
-    bgGradient: 'from-text-primary via-text-primary to-accent/10',
-    overlayColor: 'bg-black/40',
+    image: '/hero-2.jpg',
+    overlayColor: 'bg-black/50',
   },
   {
     id: 3,
     headline: 'Free Local Delivery',
     subtext: 'Same-day dispatch on orders before 2pm within Hillingdon & Uxbridge.',
-    bgGradient: 'from-accent via-accent to-text-primary/20',
-    overlayColor: 'bg-black/25',
+    image: '/hero-3.jpg',
+    overlayColor: 'bg-black/50',
   },
 ];
 
@@ -96,8 +96,12 @@ export default function Hero() {
           exit="exit"
           className="absolute inset-0"
         >
-          {/* Background Gradient */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${slide.bgGradient}`} />
+          {/* Background Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url('${slide.image}')` }}
+          />
+          {/* Dark overlay for text readability */}
           <div className={`absolute inset-0 ${slide.overlayColor}`} />
 
           {/* Content */}
