@@ -19,15 +19,15 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-primary text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-safe-left pr-safe-right">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <div className="flex items-center">
             <Image
               src="/logo.png"
               alt="MyContinental African & Caribbean Grocery"
-              width={220}
-              height={70}
-              className="h-14 w-auto object-contain"
+              width={320}
+              height={100}
+              className="h-20 w-auto object-contain"
               priority
             />
           </div>
