@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Search, ShoppingCart, Menu, X } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,8 +21,15 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-safe-left pr-safe-right">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="font-display text-2xl font-bold tracking-wide">
-            MyContinental
+          <div className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="MyContinental African & Caribbean Grocery"
+              width={220}
+              height={70}
+              className="h-14 w-auto object-contain"
+              priority
+            />
           </div>
 
           {/* Desktop Navigation */}
