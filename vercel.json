@@ -1,0 +1,10 @@
+{
+  "env": {
+    "NEXT_PUBLIC_WOOCOMMERCE_URL": "https://mycontinentalfoodstore.co.uk",
+    "WOOCOMMERCE_CONSUMER_KEY": "ck_2cb62f5475ffb403993310308ebf310154754aae",
+    "WOOCOMMERCE_CONSUMER_SECRET": "cs_352f7cb8868056fec6ecc47772eb6dc0d24fb1b4"
+  },
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install"
+}
