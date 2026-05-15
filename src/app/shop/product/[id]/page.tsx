@@ -5,6 +5,7 @@ import { ShoppingCart, ChevronLeft, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { WooCommerceProduct } from '@/lib/types';
+import { decodeHtmlEntities } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -78,7 +79,7 @@ export default function ProductPage() {
     ? product.short_description.replace(/<[^>]*>/g, '').trim()
     : '';
 
-  const category = product.categories?.[0]?.name || '';
+  const category = product.categories?.[0]?.name ? decodeHtmlEntities(product.categories[0].name) : '';
 
   return (
     <>
