@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { ShoppingCart, Search, SlidersHorizontal, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { WooCommerceProduct, WooCommerceCategory } from '@/lib/types';
 import Navbar from '@/components/Navbar';
@@ -15,14 +16,17 @@ const SORT_OPTIONS = [
   { label: 'Name: A–Z',    orderby: 'title', order: 'asc'  },
 ];
 
-export default function ShopPage() {
+function ShopPage() {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') ? Number(searchParams.get('category')) : null;
+
   const [products,    setProducts]    = useState<WooCommerceProduct[]>([]);
   const [categories,  setCategories]  = useState<WooCommerceCategory[]>([]);
   const [loading,     setLoading]     = useState(true);
   const [error,       setError]       = useState<string | null>(null);
   const [search,      setSearch]      = useState('');
   const [searchInput, setSearchInput] = useState('');
-  const [activeCategory, setActiveCategory] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<number | null>(initialCategory);
   const [sortIndex,   setSortIndex]   = useState(0);
   const [page,        setPage]        = useState(1);
   const [totalPages,  setTotalPages]  = useState(1);
@@ -303,5 +307,15 @@ export default function ShopPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+import { Suspense } from 'react';
+
+export default function ShopPageWrapper() {
+  return (
+    <Suspense fallback={null}>
+      <ShopPage />
+    </Suspense>
   );
 }

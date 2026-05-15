@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { WooCommerceCategory } from '@/lib/types';
 import { decodeHtmlEntities } from '@/lib/utils';
+
+const MotionLink = motion(Link);
 
 const categoryEmojis: Record<string, string> = {
   'Fresh Produce': '🥬',
@@ -107,8 +110,9 @@ export default function CategoryStrip() {
               const decodedName = decodeHtmlEntities(category.name);
               const emoji = categoryEmojis[decodedName] || categoryEmojis['default'];
               return (
-                <motion.button
+                <MotionLink
                   key={category.id}
+                  href={`/shop?category=${category.id}`}
                   variants={itemVariants}
                   className="group relative bg-white p-3 md:p-6 rounded-lg border border-border-light hover:border-primary hover:shadow-lg transition-all duration-300 flex flex-col items-center gap-2 md:gap-3 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
@@ -119,7 +123,7 @@ export default function CategoryStrip() {
                     {decodedName}
                   </p>
                   <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.button>
+                </MotionLink>
               );
             })
           ) : (
