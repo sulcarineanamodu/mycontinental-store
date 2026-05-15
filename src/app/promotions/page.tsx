@@ -240,8 +240,8 @@ export default function PromotionsPage() {
         {/* ── HERO BANNER ─────────────────────────────────────────────── */}
         <div className="relative w-full h-96 md:h-[500px] overflow-hidden">
           <img
-            src="/promo-subscribe.png"
-            alt="Monthly Subscription Banner"
+            src="/promo-hero-main.png"
+            alt="Authentic African & Caribbean Essentials"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/20" />
