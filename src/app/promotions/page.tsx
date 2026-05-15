@@ -282,6 +282,26 @@ export default function PromotionsPage() {
           </div>
         </div>
 
+        {/* ── PROMO BANNERS ───────────────────────────────────────────── */}
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link href="/shop" className="block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+              <img
+                src="/promo-hero-1.png"
+                alt="Shop The Best African & Caribbean Groceries"
+                className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-300"
+              />
+            </Link>
+            <Link href="/shop" className="block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+              <img
+                src="/promo-hero-2.png"
+                alt="Authentic African & Caribbean Groceries"
+                className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-300"
+              />
+            </Link>
+          </div>
+        </div>
+
         {/* ── DEAL CARDS ──────────────────────────────────────────────── */}
         <div className="max-w-7xl mx-auto px-4 md:px-8 -mt-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -380,6 +400,15 @@ export default function PromotionsPage() {
               <p className="text-gray-300 max-w-xl mx-auto text-sm mb-2">
                 Get authentic African &amp; Caribbean essentials delivered to your door every month — tailored to your household size.
               </p>
+            </div>
+
+            {/* Subscription flyer image */}
+            <div className="max-w-3xl mx-auto mb-10 rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="/promo-subscribe.png"
+                alt="Your Monthly Taste of Home — Subscription Box"
+                className="w-full h-auto object-cover"
+              />
             </div>
 
             {/* Trust icons */}
