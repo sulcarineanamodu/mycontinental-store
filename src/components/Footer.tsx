@@ -1,20 +1,42 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Shop: ['All Products', 'Featured', 'On Sale', 'New Arrivals'],
-    Company: ['About Us', 'Contact', 'Blog', 'Careers'],
-    Support: ['FAQ', 'Shipping Info', 'Returns', 'Privacy Policy'],
-    Legal: ['Terms of Service', 'Delivery Policy', 'Refund Policy', 'Accessibility'],
+    Shop: [
+      { label: 'All Products',  href: '/shop' },
+      { label: 'Featured',      href: '/shop' },
+      { label: 'On Sale',       href: '/shop' },
+      { label: 'New Arrivals',  href: '/shop' },
+    ],
+    Company: [
+      { label: 'About Us',  href: '/about' },
+      { label: 'Contact',   href: '/contact' },
+      { label: 'Blog',      href: '#' },
+      { label: 'Careers',   href: '/contact' },
+    ],
+    Support: [
+      { label: 'FAQ',           href: '/contact' },
+      { label: 'Shipping Info', href: '/contact' },
+      { label: 'Returns',       href: '/contact' },
+      { label: 'Privacy Policy',href: '#' },
+    ],
+    Legal: [
+      { label: 'Terms of Service', href: '#' },
+      { label: 'Delivery Policy',  href: '#' },
+      { label: 'Refund Policy',    href: '#' },
+      { label: 'Accessibility',    href: '#' },
+    ],
   };
 
   const socialLinks = [
-    { name: 'f', href: '#', label: 'Facebook' },
-    { name: '𝕏', href: '#', label: 'X' },
+    { name: 'f',  href: '#', label: 'Facebook' },
+    { name: '𝕏',  href: '#', label: 'X' },
     { name: '📷', href: '#', label: 'Instagram' },
-    { name: '✉️', href: '#', label: 'Email' },
+    { name: '✉️', href: '/contact', label: 'Email' },
   ];
 
   return (
@@ -54,13 +76,13 @@ export default function Footer() {
               <h4 className="font-semibold text-white mb-4">{category}</h4>
               <ul className="space-y-2">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
                       className="text-gray-300 hover:text-accent transition-colors text-sm"
                     >
-                      {link}
-                    </a>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -75,15 +97,15 @@ export default function Footer() {
               © {currentYear} MyContinental Food Store. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
+              <Link href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
+              </Link>
+              <Link href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
+              </Link>
+              <Link href="/contact" className="text-gray-300 hover:text-accent text-sm transition-colors">
                 Cookies
-              </a>
+              </Link>
             </div>
           </div>
         </div>
