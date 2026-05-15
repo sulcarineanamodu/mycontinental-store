@@ -1,5 +1,8 @@
 'use client';
 
+// Note: metadata must be in a separate server component for 'use client' pages
+// SEO is handled by the root layout for this page
+
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';

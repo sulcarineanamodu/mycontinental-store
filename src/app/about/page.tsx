@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Learn about MyContinental Food Store — bringing authentic African & Caribbean groceries to Hillingdon and Uxbridge since day one.',
+};
 
 export default function AboutPage() {
   return (

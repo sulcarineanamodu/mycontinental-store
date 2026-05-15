@@ -22,13 +22,26 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "MyContinental Food Store",
-  description: "Premium African & Caribbean groceries delivered in the UK",
-  openGraph: {
-    title: "MyContinental Food Store",
-    description: "Premium African & Caribbean groceries delivered in the UK",
-    type: "website",
+  title: {
+    default: "MyContinental Food Store | African & Caribbean Groceries UK",
+    template: "%s | MyContinental Food Store",
   },
+  description: "Shop 2,700+ authentic African & Caribbean groceries online. Same-day dispatch in Hillingdon & Uxbridge. Brands you know — Iwisa, Grace, Betapac, Ola-Ola and more.",
+  keywords: ["African groceries UK", "Caribbean food store", "Hillingdon grocery", "Uxbridge African shop", "pounded yam", "jollof rice ingredients", "African food online"],
+  openGraph: {
+    title: "MyContinental Food Store | African & Caribbean Groceries UK",
+    description: "Shop 2,700+ authentic African & Caribbean groceries online. Same-day dispatch in Hillingdon & Uxbridge.",
+    type: "website",
+    url: "https://www.mycontinentalfoodstore.co.uk",
+    siteName: "MyContinental Food Store",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MyContinental Food Store",
+    description: "2,700+ authentic African & Caribbean groceries. Same-day dispatch in Hillingdon.",
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: "https://www.mycontinentalfoodstore.co.uk" },
 };
 
 export default function RootLayout({
