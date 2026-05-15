@@ -33,6 +33,20 @@ const slides: Slide[] = [
     image: '/hero-3.jpg',
     overlayColor: 'bg-black/50',
   },
+  {
+    id: 4,
+    headline: 'Authentic Brands You Know & Trust',
+    subtext: 'Grace, Iwisa, Betapac, Mama Lucy — all your Caribbean favourites in stock',
+    image: '/hero-4.jpg',
+    overlayColor: 'bg-black/55',
+  },
+  {
+    id: 5,
+    headline: 'African & Caribbean Staples',
+    subtext: 'Pounded yam, basmati rice, curry powder and more — stocked fresh every week',
+    image: '/hero-5.jpg',
+    overlayColor: 'bg-black/55',
+  },
 ];
 
 export default function Hero() {
