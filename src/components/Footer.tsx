@@ -15,27 +15,27 @@ export default function Footer() {
     Company: [
       { label: 'About Us',  href: '/about' },
       { label: 'Contact',   href: '/contact' },
-      { label: 'Blog',      href: '#' },
+      { label: 'Blog',      href: '/about' },
       { label: 'Careers',   href: '/contact' },
     ],
     Support: [
-      { label: 'FAQ',           href: '/contact' },
-      { label: 'Shipping Info', href: '/contact' },
-      { label: 'Returns',       href: '/contact' },
-      { label: 'Privacy Policy',href: '#' },
+      { label: 'FAQ',            href: '/contact' },
+      { label: 'Shipping Info',  href: '/contact' },
+      { label: 'Returns',        href: '/contact' },
+      { label: 'Privacy Policy', href: '/contact' },
     ],
     Legal: [
-      { label: 'Terms of Service', href: '#' },
-      { label: 'Delivery Policy',  href: '#' },
-      { label: 'Refund Policy',    href: '#' },
-      { label: 'Accessibility',    href: '#' },
+      { label: 'Terms of Service', href: '/contact' },
+      { label: 'Delivery Policy',  href: '/contact' },
+      { label: 'Refund Policy',    href: '/contact' },
+      { label: 'Accessibility',    href: '/contact' },
     ],
   };
 
   const socialLinks = [
-    { name: 'f',  href: '#', label: 'Facebook' },
-    { name: '𝕏',  href: '#', label: 'X' },
-    { name: '📷', href: '#', label: 'Instagram' },
+    { name: 'f',  href: 'https://facebook.com', label: 'Facebook' },
+    { name: '𝕏',  href: 'https://x.com', label: 'X' },
+    { name: '📷', href: 'https://instagram.com', label: 'Instagram' },
     { name: '✉️', href: '/contact', label: 'Email' },
   ];
 
@@ -97,10 +97,10 @@ export default function Footer() {
               © {currentYear} MyContinental Food Store. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
+              <Link href="/contact" className="text-gray-300 hover:text-accent text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-gray-300 hover:text-accent text-sm transition-colors">
+              <Link href="/contact" className="text-gray-300 hover:text-accent text-sm transition-colors">
                 Terms of Service
               </Link>
               <Link href="/contact" className="text-gray-300 hover:text-accent text-sm transition-colors">
