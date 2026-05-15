@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import Link from 'next/link';
 import { ShoppingCart, Search, SlidersHorizontal, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { WooCommerceProduct, WooCommerceCategory } from '@/lib/types';
 import Navbar from '@/components/Navbar';
@@ -221,7 +222,7 @@ export default function ShopPage() {
                     {products.map(product => (
                       <div
                         key={product.id}
-                        className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-md transition-shadow group"
+                        className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-md transition-shadow group cursor-pointer"
                       >
                         <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
                           {product.images && product.images.length > 0 ? (
