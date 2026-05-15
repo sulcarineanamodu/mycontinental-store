@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface Slide {
   id: number;
@@ -153,10 +154,16 @@ export default function Hero() {
                 variants={contentVariants}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <button className="px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
+                <Link
+                  href="/shop"
+                  className="px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg text-center"
+                >
                   Shop Now
-                </button>
-                <button className="px-8 py-4 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-lg transition-all duration-200">
+                </Link>
+                <button
+                  onClick={() => document.getElementById('category-strip')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-lg transition-all duration-200"
+                >
                   Browse Categories
                 </button>
               </motion.div>

@@ -39,15 +39,17 @@ function wcGet(path: string): Promise<unknown> {
   });
 }
 
+type WCProduct = { images?: { src: string }[]; [key: string]: unknown };
+
 export async function GET(request: NextRequest) {
   try {
-    const limit = request.nextUrl.searchParams.get('limit') || '8';
+    const limit = parseInt(request.nextUrl.searchParams.get('limit') || '8', 10);
 
-    let data = await wcGet(`/wp-json/wc/v3/products?featured=true&per_page=${limit}`) as unknown[];
+    // Fetch a larger pool and filter to products that have images
+    const pool = await wcGet(`/wp-json/wc/v3/products?per_page=100&orderby=date&order=desc`) as WCProduct[];
+    const withImages = pool.filter(p => p.images && p.images.length > 0 && p.images[0].src);
 
-    if (!data || data.length === 0) {
-      data = await wcGet(`/wp-json/wc/v3/products?per_page=${limit}&orderby=date&order=desc`) as unknown[];
-    }
+    const data = withImages.slice(0, limit);
 
     return NextResponse.json(data, {
       headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' },

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { ShoppingCart } from 'lucide-react';
 import { WooCommerceProduct } from '@/lib/types';
 
@@ -98,6 +99,7 @@ export default function FeaturedProducts() {
                 variants={itemVariants}
                 className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
               >
+                <Link href={`/shop/product/${product.id}`} className="block">
                 {/* Product Image */}
                 <div className="relative w-full h-56 bg-gray-100 overflow-hidden">
                   {product.images && product.images.length > 0 ? (
@@ -143,6 +145,7 @@ export default function FeaturedProducts() {
                     <span>Add to Cart</span>
                   </button>
                 </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
