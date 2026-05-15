@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Tag, Truck, Star, Clock, CheckCircle, ChevronRight, Zap, Gift, Package } from 'lucide-react';
+import { ShoppingCart, Tag, Truck, Clock, CheckCircle, ChevronRight, Zap, Gift, Package } from 'lucide-react';
 import { WooCommerceProduct } from '@/lib/types';
 import { proxyImg, decodeHtmlEntities } from '@/lib/utils';
 import Navbar from '@/components/Navbar';

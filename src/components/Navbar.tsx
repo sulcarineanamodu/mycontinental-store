@@ -88,6 +88,9 @@ export default function Navbar() {
               )}
             </div>
 
+            <Link href="/promotions" className="text-red-600 hover:text-red-700 transition-colors font-bold text-sm flex items-center gap-1">
+              🔥 Deals
+            </Link>
             <Link href="/about" className="text-text-primary hover:text-primary transition-colors font-semibold text-sm">About</Link>
             <Link href="/contact" className="text-text-primary hover:text-primary transition-colors font-semibold text-sm">Contact</Link>
           </div>
@@ -138,6 +141,7 @@ export default function Navbar() {
               </div>
             )}
 
+            <Link href="/promotions" onClick={() => setIsOpen(false)} className="block py-3 text-red-600 font-bold text-sm">🔥 Deals & Promotions</Link>
             <Link href="/about" onClick={() => setIsOpen(false)} className="block py-3 text-text-primary hover:text-primary font-semibold text-sm">About</Link>
             <Link href="/contact" onClick={() => setIsOpen(false)} className="block py-3 text-text-primary hover:text-primary font-semibold text-sm">Contact</Link>
           </div>
