@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ShoppingCart } from 'lucide-react';
 import { WooCommerceProduct } from '@/lib/types';
+import { proxyImg } from '@/lib/utils';
 
 export default function FeaturedProducts() {
   const [products, setProducts] = useState<WooCommerceProduct[]>([]);
@@ -104,7 +105,7 @@ export default function FeaturedProducts() {
                 <div className="relative w-full h-56 bg-gray-100 overflow-hidden">
                   {product.images && product.images.length > 0 ? (
                     <img
-                      src={product.images[0].src}
+                      src={proxyImg(product.images[0].src)}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />

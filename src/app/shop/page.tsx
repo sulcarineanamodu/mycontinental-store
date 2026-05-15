@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { ShoppingCart, Search, SlidersHorizontal, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { WooCommerceProduct, WooCommerceCategory } from '@/lib/types';
 import Navbar from '@/components/Navbar';
-import { decodeHtmlEntities } from '@/lib/utils';
+import { decodeHtmlEntities, proxyImg } from '@/lib/utils';
 import Footer from '@/components/Footer';
 
 const SORT_OPTIONS = [
@@ -232,7 +232,7 @@ function ShopPage() {
                         <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
                           {product.images && product.images.length > 0 ? (
                             <img
-                              src={product.images[0].src}
+                              src={proxyImg(product.images[0].src)}
                               alt={product.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />

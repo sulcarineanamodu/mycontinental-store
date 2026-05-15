@@ -5,7 +5,7 @@ import { ShoppingCart, ChevronLeft, Star } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { WooCommerceProduct } from '@/lib/types';
-import { decodeHtmlEntities } from '@/lib/utils';
+import { decodeHtmlEntities, proxyImg } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -108,7 +108,7 @@ export default function ProductPage() {
               <div className="relative bg-white rounded-xl border border-border-light overflow-hidden aspect-square mb-3">
                 {images.length > 0 ? (
                   <img
-                    src={images[activeImg].src}
+                    src={proxyImg(images[activeImg].src)}
                     alt={product.name}
                     className="w-full h-full object-contain p-4"
                   />
@@ -134,7 +134,7 @@ export default function ProductPage() {
                         activeImg === i ? 'border-primary' : 'border-border-light'
                       }`}
                     >
-                      <img src={img.src} alt="" className="w-full h-full object-cover" />
+                      <img src={proxyImg(img.src)} alt="" className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -231,7 +231,7 @@ export default function ProductPage() {
                   >
                     <div className="w-full h-40 bg-gray-100 overflow-hidden">
                       {p.images?.[0] ? (
-                        <img src={p.images[0].src} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <img src={proxyImg(p.images[0].src)} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div>
                       )}
