@@ -238,48 +238,13 @@ export default function PromotionsPage() {
       <main className="min-h-screen bg-background">
 
         {/* ── HERO BANNER ─────────────────────────────────────────────── */}
-        <div className="relative bg-gradient-to-br from-[#1a3a1a] via-[#1a5c2a] to-[#0d2d0d] overflow-hidden">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-10"
-            style={{ backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)', backgroundSize: '20px 20px' }} />
-
-          <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-20">
-            <div className="max-w-2xl">
-              <span className="inline-block bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4">
-                🔥 This Week's Deals
-              </span>
-              <h1 className="font-display text-4xl md:text-6xl font-black text-white leading-tight mb-4">
-                Authentic<br />
-                <span className="text-yellow-400">African &amp; Caribbean</span><br />
-                Groceries
-              </h1>
-              <p className="text-white/80 text-lg mb-6">
-                Delivered to your door. Taste of home — one click away.
-              </p>
-              <div className="flex items-center gap-4 flex-wrap">
-                <Link
-                  href="/shop"
-                  className="bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 rounded-xl transition-colors flex items-center gap-2 text-sm"
-                >
-                  Shop All Deals <ChevronRight size={16} />
-                </Link>
-                <a href="#subscribe"
-                  className="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm border border-white/20"
-                >
-                  Monthly Subscription
-                </a>
-              </div>
-            </div>
-
-            {/* Countdown */}
-            <div className="mt-10 flex items-center gap-4 flex-wrap">
-              <div className="flex items-center gap-2 text-white/70 text-sm">
-                <Clock size={16} />
-                <span>Today's deals end in:</span>
-              </div>
-              <Countdown />
-            </div>
-          </div>
+        <div className="relative w-full h-96 md:h-[500px] overflow-hidden">
+          <img
+            src="/promo-subscribe.png"
+            alt="Monthly Subscription Banner"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
         {/* ── PROMO BANNERS ───────────────────────────────────────────── */}
