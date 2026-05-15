@@ -27,11 +27,12 @@ function wcGet(path: string): Promise<unknown> {
   });
 }
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await params;
     const [product, related] = await Promise.all([
-      wcGet(`/wp-json/wc/v3/products/${params.id}`),
-      wcGet(`/wp-json/wc/v3/products?per_page=4&orderby=date&order=desc&exclude=${params.id}`),
+      wcGet(`/wp-json/wc/v3/products/${id}`),
+      wcGet(`/wp-json/wc/v3/products?per_page=4&orderby=date&order=desc&exclude=${id}`),
     ]);
     return NextResponse.json({ product, related }, {
       headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600' },

@@ -220,9 +220,10 @@ export default function ShopPage() {
                 <>
                   <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {products.map(product => (
-                      <div
+                      <Link
                         key={product.id}
-                        className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-md transition-shadow group cursor-pointer"
+                        href={`/shop/product/${product.id}`}
+                        className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-md transition-shadow group"
                       >
                         <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
                           {product.images && product.images.length > 0 ? (
@@ -268,7 +269,7 @@ export default function ShopPage() {
                             Add to Cart
                           </button>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
 
