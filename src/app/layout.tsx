@@ -42,6 +42,13 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://www.mycontinentalfoodstore.co.uk" },
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: { url: "/icon.png", sizes: "192x192" },
+  },
 };
 
 export default function RootLayout({
