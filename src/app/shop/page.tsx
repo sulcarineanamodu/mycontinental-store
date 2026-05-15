@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { ShoppingCart, Search, SlidersHorizontal, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { WooCommerceProduct, WooCommerceCategory } from '@/lib/types';
 import Navbar from '@/components/Navbar';
+import { decodeHtmlEntities } from '@/lib/utils';
 import Footer from '@/components/Footer';
 
 const SORT_OPTIONS = [
@@ -80,7 +81,7 @@ export default function ShopPage() {
   };
   const clearSearch = () => { setSearch(''); setSearchInput(''); setPage(1); };
 
-  const activeCategoryName = categories.find(c => c.id === activeCategory)?.name;
+  const activeCategoryName = categories.find(c => c.id === activeCategory)?.name ? decodeHtmlEntities(categories.find(c => c.id === activeCategory)!.name) : undefined;
 
   return (
     <>
@@ -171,7 +172,7 @@ export default function ShopPage() {
                             : 'text-text-secondary hover:bg-gray-100 hover:text-text-primary'
                         }`}
                       >
-                        {cat.name}
+                        {decodeHtmlEntities(cat.name)}
                         {cat.count > 0 && (
                           <span className="ml-1 text-xs opacity-70">({cat.count})</span>
                         )}
