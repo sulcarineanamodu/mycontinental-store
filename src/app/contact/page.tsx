@@ -45,7 +45,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-text-primary mb-1">Store Address</p>
-                  <p className="text-text-secondary text-sm">Uxbridge, Hillingdon<br />London, United Kingdom</p>
+                  <p className="text-text-secondary text-sm">The Arcade, Unit 7<br />276/277 High St (Opp Nando's)<br />Uxbridge, UB8 1LG</p>
                 </div>
               </div>
 
@@ -68,8 +68,9 @@ export default function ContactPage() {
                 <div>
                   <p className="font-semibold text-text-primary mb-1">Opening Hours</p>
                   <p className="text-text-secondary text-sm">
-                    Monday – Saturday: 9am – 7pm<br />
-                    Sunday: 10am – 5pm
+                    Mon – Fri: 9:30am – 6:30pm<br />
+                    Sat: 10:30am – 6:30pm<br />
+                    Sun: Closed
                   </p>
                 </div>
               </div>
@@ -79,8 +80,10 @@ export default function ContactPage() {
                   <Phone size={20} className="text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold text-text-primary mb-1">Same-Day Dispatch</p>
-                  <p className="text-text-secondary text-sm">Order before 2pm for same-day dispatch within Hillingdon & Uxbridge.</p>
+                  <p className="font-semibold text-text-primary mb-1">Phone</p>
+                  <a href="tel:07895870423" className="text-primary text-sm hover:underline">
+                    07895 870 423
+                  </a>
                 </div>
               </div>
             </div>

@@ -68,6 +68,23 @@ export default function Footer() {
             >
               💬 WhatsApp: 07895870423
             </a>
+
+            {/* Shop Address */}
+            <div className="mt-6 text-gray-300 text-sm">
+              <h4 className="font-semibold text-white mb-2">Visit Us</h4>
+              <p>The Arcade, Unit 7</p>
+              <p>276/277 High St (Opp Nando's)</p>
+              <p>Uxbridge, UB8 1LG</p>
+              <p className="mt-3">📞 07895 870 423</p>
+            </div>
+
+            {/* Opening Hours */}
+            <div className="mt-6 text-gray-300 text-sm">
+              <h4 className="font-semibold text-white mb-2">Opening Hours</h4>
+              <p>Mon - Fri: 9:30am - 6:30pm</p>
+              <p>Sat: 10:30am - 6:30pm</p>
+              <p>Sun: Closed</p>
+            </div>
           </div>
 
           {/* Links Sections */}
