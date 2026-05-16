@@ -103,17 +103,22 @@ export default function FeaturedProducts() {
                 <Link href={`/shop/product/${product.id}`} className="block">
                 {/* Product Image */}
                 <div className="relative w-full h-56 bg-gray-100 overflow-hidden">
-                  {product.images && product.images.length > 0 ? (
-                    <img
-                      src={proxyImg(product.images[0].src)}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-background to-gray-200">
-                      <span className="text-gray-400 text-sm">No image</span>
-                    </div>
-                  )}
+                  <img
+                    src={product.images && product.images.length > 0
+                      ? proxyImg(product.images[0].src)
+                      : `/products/${(product.sku || '').toUpperCase()}.jpg`}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      if (!el.dataset.fallback) {
+                        el.dataset.fallback = '1';
+                        el.src = '/products/placeholder.jpg';
+                      } else {
+                        el.style.display = 'none';
+                      }
+                    }}
+                  />
                 </div>
 
                 {/* Product Info */}

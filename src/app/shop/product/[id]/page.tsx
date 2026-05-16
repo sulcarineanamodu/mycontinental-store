@@ -106,17 +106,22 @@ export default function ProductPage() {
             {/* Image gallery */}
             <div>
               <div className="relative bg-white rounded-xl border border-border-light overflow-hidden aspect-square mb-3">
-                {images.length > 0 ? (
-                  <img
-                    src={proxyImg(images[activeImg].src)}
-                    alt={product.name}
-                    className="w-full h-full object-contain p-4"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400">
-                    No image available
-                  </div>
-                )}
+                <img
+                  src={images.length > 0
+                    ? proxyImg(images[activeImg].src)
+                    : `/products/${(product.sku || '').toUpperCase()}.jpg`}
+                  alt={product.name}
+                  className="w-full h-full object-contain p-4"
+                  onError={(e) => {
+                    const el = e.currentTarget;
+                    if (!el.dataset.fallback) {
+                      el.dataset.fallback = '1';
+                      el.src = '/products/placeholder.jpg';
+                    } else {
+                      el.style.display = 'none';
+                    }
+                  }}
+                />
                 {onSale && (
                   <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
                     {discount}% OFF
@@ -230,11 +235,12 @@ export default function ProductPage() {
                     className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-md transition-shadow group"
                   >
                     <div className="w-full h-40 bg-gray-100 overflow-hidden">
-                      {p.images?.[0] ? (
-                        <img src={proxyImg(p.images[0].src)} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div>
-                      )}
+                      <img
+                        src={p.images?.[0] ? proxyImg(p.images[0].src) : `/products/${(p.sku || '').toUpperCase()}.jpg`}
+                        alt={p.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => { const el = e.currentTarget; if (!el.dataset.fallback) { el.dataset.fallback='1'; el.src='/products/placeholder.jpg'; } else { el.style.display='none'; } }}
+                      />
                     </div>
                     <div className="p-3">
                       <p className="text-sm font-semibold text-text-primary line-clamp-2 mb-1">{p.name}</p>

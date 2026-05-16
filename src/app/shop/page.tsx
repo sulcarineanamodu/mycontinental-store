@@ -230,17 +230,23 @@ function ShopPage() {
                         className="bg-white border border-border-light rounded-lg overflow-hidden hover:shadow-md transition-shadow group"
                       >
                         <div className="relative w-full h-48 bg-gray-100 overflow-hidden">
-                          {product.images && product.images.length > 0 ? (
-                            <img
-                              src={proxyImg(product.images[0].src)}
-                              alt={product.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-                              <span className="text-gray-400 text-xs">No image</span>
-                            </div>
-                          )}
+                          <img
+                            src={product.images && product.images.length > 0
+                              ? proxyImg(product.images[0].src)
+                              : `/products/${(product.sku || '').toUpperCase()}.jpg`}
+                            alt={product.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              const el = e.currentTarget;
+                              if (!el.dataset.fallback) {
+                                el.dataset.fallback = '1';
+                                el.src = '/products/placeholder.jpg';
+                              } else {
+                                el.style.display = 'none';
+                                el.parentElement!.classList.add('flex','items-center','justify-center','bg-gradient-to-br','from-gray-100','to-gray-200');
+                              }
+                            }}
+                          />
                           {product.on_sale && (
                             <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">
                               SALE
